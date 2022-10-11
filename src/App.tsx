@@ -1,7 +1,7 @@
 import { CssBaseline } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
 import { AppRoutes } from './routes'
-import { MenuAppBar } from './shared/components/app-bar'
+import { NavBar } from './shared/components/navbar'
 import { AppThemeProvider } from './shared/contexts/ThemeContext'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <AppThemeProvider>
       <BrowserRouter>
-        <MenuAppBar/>
+        <NavBar/>
         <AppRoutes />
       </BrowserRouter>
       <CssBaseline />
