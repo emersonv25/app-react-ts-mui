@@ -9,8 +9,9 @@ function App() {
   return (
     <AppThemeProvider>
       <BrowserRouter>
-        <NavBar/>
-        <AppRoutes />
+        <NavBar>
+           <AppRoutes />
+        </NavBar>
       </BrowserRouter>
       <CssBaseline />
     </AppThemeProvider>
