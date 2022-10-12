@@ -1,9 +1,12 @@
 import { Button, Divider, Drawer, Icon, IconButton, Stack, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { useState } from "react"
+import { Menu } from "../../@types/menu"
 
-export const MenuDrawer = () => {
-
+type MenuDrawerProps = {
+    menus: Menu[]
+}
+export const MenuDrawer = (props: MenuDrawerProps) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     return (
         <>
@@ -18,20 +21,11 @@ export const MenuDrawer = () => {
                         <Typography variant='h6'>MeuFlix</Typography>
                     </Box>
                     <Divider></Divider>
-                    <Box p={2}  role='presentation'>
+                    <Box p={2} role='presentation'>
                         <Stack>
-                            <Button color='inherit' href='/'>
-                                Início
-                            </Button>
-                            <Button color='inherit'>
-                                Lista
-                            </Button>
-                            <Button color='inherit'>
-                                Gêneros
-                            </Button>
-                            <Button color='inherit' href='/about'>
-                                Sobre
-                            </Button>
+                            {
+                                props.menus.map((menu, key) => <Button key={key}  color='inherit' href={`${menu.name}`}>{menu.name}</Button>)
+                            }
                         </Stack>
                     </Box>
                 </Drawer>

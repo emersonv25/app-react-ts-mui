@@ -2,12 +2,18 @@
 import { AppBar, Box, Button, Icon, IconButton, InputAdornment, TextField, Toolbar, Typography } from '@mui/material'
 import { Stack } from '@mui/system';
 import { useState } from 'react';
+import { Menu } from '../../@types/menu';
 import { MenuDrawer } from './MenuDrawer';
 
 type NavbarProps = {
     children: React.ReactNode
 }
-
+const menus : Menu[] = [
+    {name: 'Início', path: '/'},
+    {name: 'Lista', path: '/'},
+    {name: 'Gêneros', path: '/'},
+    {name: 'Sobre', path: '/about'},
+]
 export const NavBar: React.FC<NavbarProps> = ({ children }) => {
     const [searchDisplay, setSearchDisplay] = useState(false);
     return (
@@ -15,25 +21,16 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
             <Box width="100%">
                 <AppBar position='static'>
                     <Toolbar>
-                        <MenuDrawer />
+                        <MenuDrawer menus = {menus}/>
 
                         <Typography variant='h6' mr='auto' style={{ flexGrow: 0, justifyContent: 'start' }}>
-                            MeuFlix
+                            MenuFlix
                         </Typography>
 
                         <Stack direction="row" style={{ flexGrow: 1, justifyContent: 'center' }} display={{ xs: 'none', md: 'flex' }}>
-                            <Button color='inherit' href='/'>
-                                Início
-                            </Button>
-                            <Button color='inherit'>
-                                Lista
-                            </Button>
-                            <Button color='inherit'>
-                                Gêneros
-                            </Button>
-                            <Button color='inherit' href='/about'>
-                                Sobre
-                            </Button>
+                            {
+                                menus.map((menu, key) => <Button key={key} color='inherit' href={`${menu.name}`}>{menu.name}</Button> )
+                            }
                         </Stack>
 
                         <Box display={{ xs: 'none', md: 'flex' }}>
@@ -66,7 +63,7 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                     </Toolbar>
                 </AppBar>
             </Box>
-            <Box p={{ xs: 4, md: 8 }}>
+            <Box p={{ xs: 2}}>
                 {children}
             </Box>
         </>
