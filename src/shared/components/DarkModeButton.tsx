@@ -7,7 +7,7 @@ export function DarkModeButton() {
 
     return (
         <div>
-            <IconButton onClick={toggleTheme}>
+            <IconButton onClick={toggleTheme} color='inherit'>
                 <Icon>{themeName === 'dark' ? 'dark_mode' : 'sunny' }</Icon>
             </IconButton>
         </div>

@@ -3,6 +3,7 @@ import { AppBar, Box, Button, Icon, IconButton, InputAdornment, TextField, Toolb
 import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { Menu } from '../../@types/menu';
+import { DarkModeButton } from '../DarkModeButton';
 import { MenuDrawer } from './MenuDrawer';
 
 type NavbarProps = {
@@ -58,6 +59,9 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                                     <Icon>search</Icon>
                                 </IconButton>
                             </Box>
+                        </Box>
+                        <Box>
+                            <DarkModeButton/>
                         </Box>
 
                     </Toolbar>
