@@ -8,11 +8,11 @@ import { CardInfo } from '../../@types/cardInfo';
 
 export default function ActionAreaCard(props : CardInfo) {
     return (
-        <Card sx={{ maxWidth: 200 }}>
+        <Card sx={{ width: 200 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="100%"
+                    height="285"
                     width="100%"
                     image={`${props.image}`}
                 />

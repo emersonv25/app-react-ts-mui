@@ -9,14 +9,14 @@ export function Home() {
         <div>
             <Box>
                 <Container>
-                    <h2>Populares</h2>
+                    <h2>Está é a pagina inicial</h2>
                     <Grid
                         container
-                        spacing={3}
+                        spacing={2}
                         justifyContent="left"
                     >
                         {cards.map((card, key) =>
-                            <Grid item xs={6} sm={4} md={2}>
+                            <Grid item xs={6} sm={4} md={2} ml={2} mr={2}>
                                 <CardImage key={key} title={`${card.title}`} image={`${card.image}`}></CardImage>
                             </Grid>
                         )
@@ -34,24 +34,13 @@ export function Home() {
 
 const cards: CardInfo[] =
     [
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg'},
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-        { title: 'Attack on Titan', image: '/data/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
-
-
+        { title: 'Attack on Titan', image: '/static/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
+        { title: 'Reptile', image: '/static/images/contemplative-reptile.jpg' },
+        { title: 'Live from space', image: '/static/images/live-from-space.jpg' },
+        { title: 'Attack on Titan', image: '/static/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
+        { title: 'Reptile', image: '/static/images/contemplative-reptile.jpg' },
+        { title: 'Live from space', image: '/static/images/live-from-space.jpg' },
+        { title: 'Attack on Titan', image: '/static/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
+        { title: 'Reptile', image: '/static/images/contemplative-reptile.jpg' },
+        { title: 'Live from space', image: '/static/images/live-from-space.jpg' },
     ]
