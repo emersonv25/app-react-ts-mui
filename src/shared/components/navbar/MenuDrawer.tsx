@@ -10,11 +10,13 @@ export const MenuDrawer = (props: MenuDrawerProps) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     return (
         <>
-            <Box display={{ xs: 'flex', md: 'none' }}>
+            <Box display={{ xs: 'flex', md: 'none' }} pr={1}>
                 <IconButton edge='start' aria-label='menu' color='inherit' onClick={() => setIsDrawerOpen(true)}>
                     <Icon>menu</Icon>
                 </IconButton>
+                <Divider orientation="vertical" flexItem />
             </Box>
+            
             <Box display={{ xs: 'none', md: 'flex' }}>
                 <Drawer variant='temporary' anchor='left' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
                     <Box p={2} width='250px' textAlign='center' role='presentation'>
