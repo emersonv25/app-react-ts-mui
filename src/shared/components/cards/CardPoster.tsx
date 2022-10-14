@@ -6,18 +6,18 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { CardInfo } from '../../@types/cardInfo';
 
-export default function ActionAreaCard(props : CardInfo) {
+export default function CardPoster(props : CardInfo) {
     return (
-        <Card sx={{ maxWidth: 250, margin: 1}}>
+        <Card sx={{ display:'flex', margin: 1}} >
             <CardActionArea>
-                <CardMedia
+                <CardMedia 
                     component="img"
-                    height="250"
+                    height="330"
                     width="100%"
                     image={`${props.image}`}
                 />
                 <CardContent sx={{ maxHeight: 40, padding: 1 }}>
-                    <Typography gutterBottom variant="subtitle1" align="center">
+                    <Typography gutterBottom variant="subtitle1" align="left">
                         {props.title}
                     </Typography>
                 </CardContent>

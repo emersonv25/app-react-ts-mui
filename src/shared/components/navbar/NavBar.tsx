@@ -15,13 +15,14 @@ const menus: Menu[] = [
     { name: 'Ordem Alfabética', path: '/' },
     { name: 'Sobre', path: '/about' },
 ]
+// latest, most views, most likes
 export const NavBar: React.FC<NavbarProps> = ({ children }) => {
     const [searchDisplay, setSearchDisplay] = useState(false);
     return (
         <>
             <Box width="100%">
                 <AppBar position='static'>
-                    <Container>
+                    <Container maxWidth='xl'>
                         <Box>
                             <Toolbar>
                                 <MenuDrawer menus={menus} />

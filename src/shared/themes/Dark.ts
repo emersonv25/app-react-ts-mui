@@ -16,6 +16,10 @@ export const DarkTheme = createTheme({
             dark: purple[400],
             light: purple[300],
             contrastText: 'white',
+         },
+         background: {
+            paper: '#1F2331',
+            default: '#090C13'
          }
       },
 });
