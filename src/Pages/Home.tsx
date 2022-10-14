@@ -12,18 +12,17 @@ export function Home() {
                     <h2>Está é a pagina inicial</h2>
                     <Grid
                         container
-                        spacing={2}
                         justifyContent="left"
                     >
                         {cards.map((card, key) =>
-                            <Grid item xs={6} sm={4} md={2} ml={2} mr={2}>
+                            <Grid item xs={6} sm={4} md={2}>
                                 <CardImage key={key} title={`${card.title}`} image={`${card.image}`}></CardImage>
                             </Grid>
                         )
                         }
                     </Grid>
-                    <Box display='flex' justifyContent="center" p={2}>
-                        <Pagination count={10} color="primary" />
+                    <Box display='flex' justifyContent="center" pt={1} pb={1}>
+                        <Pagination count={100} color="primary" />
                     </Box>
 
                 </Container>
