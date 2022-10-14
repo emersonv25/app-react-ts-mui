@@ -3,12 +3,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, useTheme } from '@mui/material';
 import { CardInfo } from '../../@types/cardInfo';
 
 export default function CardPoster(props : CardInfo) {
     return (
-        <Card sx={{ display:'flex', margin: 1}} >
+        <Card sx={{ display:'flex', margin: 1}} elevation={0}>
             <CardActionArea>
                 <CardMedia 
                     component="img"

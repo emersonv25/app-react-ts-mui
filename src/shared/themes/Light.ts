@@ -22,4 +22,13 @@ export const LightTheme = createTheme({
           default: '#f7f6f3'
         }
       },
+      components: {
+        MuiCard:{
+           styleOverrides:{
+              root:{
+                 backgroundColor:'#f7f6f3'
+              }
+           }
+        }
+     }
 });
