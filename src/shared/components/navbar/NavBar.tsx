@@ -1,10 +1,12 @@
 
-import { AppBar, Box, Button, Container, Divider, Icon, IconButton, InputAdornment, TextField, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Container, createTheme, Divider, Icon, IconButton, InputAdornment, TextField, Toolbar, Typography } from '@mui/material'
 import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { Menu } from '../../@types/menu';
 import { DarkModeButton } from '../DarkModeButton';
 import { MenuDrawer } from './MenuDrawer';
+
+const theme = createTheme();
 
 type NavbarProps = {
     children: React.ReactNode
@@ -15,6 +17,7 @@ const menus: Menu[] = [
     { name: 'Ordem Alfabética', path: '/' },
     { name: 'Sobre', path: '/about' },
 ]
+
 // latest, most views, most likes
 export const NavBar: React.FC<NavbarProps> = ({ children }) => {
     const [searchDisplay, setSearchDisplay] = useState(false);
@@ -38,25 +41,22 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                                 </Stack>
 
                                 <Box display={{ xs: 'none', md: 'flex' }}>
-                                    <TextField size='small' label='Pesquisar...' InputLabelProps={{ style: { color: 'white' } }}></TextField>
+                                    <TextField
+                                        size='small'
+                                        label='Pesquisar...'
+                                        variant='standard'
+                                        InputLabelProps={{ style: { color: 'white', padding: '0 15px' } }}
+                                        InputProps={{ disableUnderline: true }}
+                                        style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 25, width: '100%', padding: '0  10px' }}>
+
+                                    </TextField>
                                     <IconButton color='inherit'>
                                         <Icon>search</Icon>
                                     </IconButton>
                                 </Box>
 
-                                {/* Input de pesquisar em telas pequenas */}
+                                {/* Exibir o Input de pesquisar em telas pequenas */}
                                 <Box display={{ xs: 'flex', md: 'none' }}>
-                                    <Box display={{ xs: searchDisplay ? 'flex' : 'none', md: 'none' }}>
-                                        <TextField size='small' label='Pesquisar...' InputLabelProps={{ style: { color: 'white' } }}></TextField>
-                                        <IconButton color='inherit'>
-                                            <Icon>search</Icon>
-                                        </IconButton>
-                                        <IconButton color='inherit' onClick={() => setSearchDisplay(false)}>
-                                            <Icon>close</Icon>
-                                        </IconButton>
-                                    </Box>
-
-                                    {/* habilita o input de pesquisar em telas pequenas */}
                                     <Box display={{ xs: searchDisplay ? 'none' : 'flex', md: 'none' }}>
                                         <IconButton color='inherit' onClick={() => setSearchDisplay(true)}>
                                             <Icon>search</Icon>
@@ -72,6 +72,28 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                         </Box>
                     </Container>
                 </AppBar>
+            </Box>
+            {/* Input de pesquisar em telas pequenas */}
+            <Box display={{ xs: 'flex', md: 'none' }} p={1}>
+                <Container>
+                    <Box display={{ xs: searchDisplay ? 'flex' : 'none', md: 'none' }} justifyContent='center'>
+                        <TextField
+                            size='small'
+                            label='Pesquisar...'
+                            variant='standard'
+                            InputLabelProps={{ style: { color: 'white', padding: '0 15px' } }}
+                            InputProps={{ disableUnderline: true }}
+                            style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 25, width: '100%', padding: '0  10px' }}>
+
+                        </TextField>
+                        <IconButton color='inherit'>
+                            <Icon>search</Icon>
+                        </IconButton>
+                        <IconButton color='inherit' onClick={() => setSearchDisplay(false)}>
+                            <Icon>close</Icon>
+                        </IconButton>
+                    </Box>
+                </Container>
             </Box>
             <Box>
                 {children}
