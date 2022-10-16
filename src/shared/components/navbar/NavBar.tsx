@@ -1,12 +1,12 @@
 
-import { AppBar, Box, Button, Container, createTheme, Divider, Icon, IconButton, InputAdornment, TextField, Toolbar, Typography } from '@mui/material'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { AppBar, Box, Button, Container, Divider, Icon, IconButton, TextField, Toolbar, Typography } from '@mui/material'
 import { Stack } from '@mui/system';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from '../../@types/menu';
 import { DarkModeButton } from '../DarkModeButton';
 import { MenuDrawer } from './MenuDrawer';
-
-const theme = createTheme();
 
 type NavbarProps = {
     children: React.ReactNode
@@ -36,7 +36,7 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
 
                                 <Stack direction="row" style={{ flexGrow: 1, justifyContent: 'center' }} display={{ xs: 'none', md: 'flex' }}>
                                     {
-                                        menus.map((menu, key) => <Button key={key} color='inherit' href={`${menu.name}`}>{menu.name}</Button>)
+                                        menus.map((menu, key) => <Button key={key} color='inherit' component={Link} to={`${menu.path}`}>{menu.name}</Button>)
                                     }
                                 </Stack>
 
@@ -45,7 +45,7 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                                         size='small'
                                         label='Pesquisar...'
                                         variant='standard'
-                                        InputLabelProps={{ style: { color: 'white', padding: '0 15px' } }}
+                                        InputLabelProps={{ style: { padding: '0 15px' } }}
                                         InputProps={{ disableUnderline: true }}
                                         style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 25, width: '100%', padding: '0  10px' }}>
 
@@ -62,6 +62,13 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                                             <Icon>search</Icon>
                                         </IconButton>
                                     </Box>
+                                </Box>
+                                
+                                <Divider orientation="vertical" variant="middle" flexItem />
+                                <Box>
+                                    <IconButton color='inherit' component={Link} to='/login'>
+                                        <AccountCircleIcon ></AccountCircleIcon>
+                                    </IconButton>
                                 </Box>
                                 <Divider orientation="vertical" variant="middle" flexItem />
                                 <Box>
@@ -81,7 +88,7 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                             size='small'
                             label='Pesquisar...'
                             variant='standard'
-                            InputLabelProps={{ style: { color: 'white', padding: '0 15px' } }}
+                            InputLabelProps={{ style: { padding: '0 15px' } }}
                             InputProps={{ disableUnderline: true }}
                             style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 25, width: '100%', padding: '0  10px' }}>
 

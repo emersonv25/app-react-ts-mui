@@ -10,16 +10,16 @@ export function Home() {
         <>
             <Box>
                 <Container maxWidth='xl'>
+                    <h2>Este é um slider</h2>
+                    <Box>
+                        <CarouselCards arrayCards={cards} ></CarouselCards>
+                    </Box>
+                </Container>
+                <Container maxWidth='xl'>
                     <h2>Está é uma pagina</h2>
                     <PageCards arrayCards={cards} ></PageCards>
                 </Container>
             </Box>
-            <Container maxWidth='xl'>
-            <h2>Este é um slider</h2>
-                <Box>
-                    <CarouselCards arrayCards={cards} ></CarouselCards>
-                </Box>
-            </Container>
         </>
     )
 }

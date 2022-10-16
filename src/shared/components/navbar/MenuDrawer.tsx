@@ -1,6 +1,7 @@
 import { Button, Divider, Drawer, Icon, IconButton, Stack, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { Menu } from "../../@types/menu"
 
 type MenuDrawerProps = {
@@ -16,7 +17,7 @@ export const MenuDrawer = (props: MenuDrawerProps) => {
                 </IconButton>
                 <Divider orientation="vertical" flexItem />
             </Box>
-            
+
             <Box display={{ xs: 'none', md: 'flex' }}>
                 <Drawer variant='temporary' anchor='left' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
                     <Box p={2} width='250px' textAlign='center' role='presentation'>
@@ -26,7 +27,7 @@ export const MenuDrawer = (props: MenuDrawerProps) => {
                     <Box p={2} role='presentation'>
                         <Stack>
                             {
-                                props.menus.map((menu, key) => <Button key={key}  color='inherit' href={`${menu.name}`}>{menu.name}</Button>)
+                                props.menus.map((menu, key) => <Button key={key} color='inherit' component={Link} to={`${menu.path}`}>{menu.name}</Button>)
                             }
                         </Stack>
                     </Box>
