@@ -16,7 +16,7 @@ export default function CardPoster(props : CardInfo) {
                     image={`${props.image}`}
                 />
                 <CardContent sx={{ maxHeight: 40, padding: 1 }}>
-                    <Typography gutterBottom variant="subtitle1" align="left">
+                    <Typography gutterBottom variant="overline" align="left">
                         {props.title}
                     </Typography>
                 </CardContent>

@@ -1,4 +1,4 @@
-import { Button, Divider, Drawer, Icon, IconButton, Stack, Typography } from "@mui/material"
+import { Button, Divider, Drawer, Icon, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { useState } from "react"
 import { Link } from "react-router-dom"
@@ -24,12 +24,22 @@ export const MenuDrawer = (props: MenuDrawerProps) => {
                         <Typography variant='h6'>MeuFlix</Typography>
                     </Box>
                     <Divider></Divider>
-                    <Box p={2} role='presentation'>
-                        <Stack>
+                    <Box flex={1}>
+                        <List component="nav">
                             {
-                                props.menus.map((menu, key) => <Button key={key} color='inherit' component={Link} to={`${menu.path}`}>{menu.name}</Button>)
+                                props.menus.map((menu, key) =>
+                                    <ListItemButton key={key} component={Link} to={`${menu.path}`}>
+                                        {/*
+                                            <ListItemIcon>
+                                                <Icon>home</Icon>
+                                            </ListItemIcon>*/
+                                        }
+                                        <ListItemText primary={`${menu.name}`} />
+                                    </ListItemButton>
+                                )
+
                             }
-                        </Stack>
+                        </List>
                     </Box>
                 </Drawer>
             </Box>

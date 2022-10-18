@@ -5,7 +5,9 @@ import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from '../../@types/menu';
-import { DarkModeButton } from '../DarkModeButton';
+import { DarkModeButton } from '../buttons/DarkModeButton';
+import { LogoutButton } from '../buttons/LogoutButton';
+import UserButton from '../buttons/UserButton';
 import { MenuDrawer } from './MenuDrawer';
 
 type NavbarProps = {
@@ -66,15 +68,12 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                                 
                                 <Divider orientation="vertical" variant="middle" flexItem />
                                 <Box>
-                                    <IconButton color='inherit' component={Link} to='/login'>
-                                        <AccountCircleIcon ></AccountCircleIcon>
-                                    </IconButton>
+                                    <UserButton />
                                 </Box>
                                 <Divider orientation="vertical" variant="middle" flexItem />
                                 <Box>
                                     <DarkModeButton />
                                 </Box>
-
                             </Toolbar>
                         </Box>
                     </Container>
