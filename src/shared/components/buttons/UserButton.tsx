@@ -44,15 +44,10 @@ export default function UserButton() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                {
-                    !signed && <MenuItem component={Link} to='/login' onClick={handleClose}>Entrar</MenuItem>
-                }
-                {
-                    signed && <MenuItem component={Link} to='/user' onClick={handleClose}>Perfil</MenuItem>
-                }
-                {
-                    signed && <MenuItem onClick={logoutClick} >Sair</MenuItem>
-                }
+                {!signed && <MenuItem component={Link} to='/login' onClick={handleClose}>Entrar</MenuItem>}
+                {!signed && <MenuItem component={Link} to='/register' onClick={handleClose}>Cadastrar</MenuItem>}
+                {signed && <MenuItem component={Link} to='/user' onClick={handleClose}>Perfil</MenuItem>}
+                {signed && <MenuItem onClick={logoutClick} >Sair</MenuItem>}
 
             </Menu>
         </div>

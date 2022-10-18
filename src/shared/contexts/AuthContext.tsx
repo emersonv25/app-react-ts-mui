@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { User, UserLogin } from "../@types/user";
 import api from "../services/api";
+import { useAlertContext } from "./AlertContext";
 
 interface IAuthProviderProps {
     children: React.ReactNode
@@ -22,6 +23,7 @@ export const useAuthContext = () => {
 export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState('');
+    const { setAlert } = useAlertContext();
 
     useEffect(() => {
         async function loadingStoreData(){
@@ -33,7 +35,6 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
                 setUser(JSON.parse(storagedUser));
                 setToken(storagedToken)
                 api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-
             }
             else{
                 logout()
@@ -44,18 +45,17 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
 
 
     async function login(userData: UserLogin) {
-        const response = await api.post("/auth/login", userData)
-
-        if(response.data.error)
-        {
-            alert(response.data.error)
-        }
-        else{
+        await api.post("/auth/login", userData).then(response => {
             setUser(response.data.user)
             api.defaults.headers.Authorization = `Bearer ${response.data.token}`
             localStorage.setItem("@Auth:user", JSON.stringify(response.data.user))
             localStorage.setItem("@Auth:token", response.data.token)
-        }
+        }).catch(err => {
+            console.log(err)
+            //alert(err.response.data ? err.response.data : err.message)
+            setAlert({message: err.message, type: 'error'})
+        });
+        
     }
     function logout(){
         localStorage.removeItem("@Auth:user");

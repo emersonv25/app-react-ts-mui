@@ -1,12 +1,10 @@
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AppBar, Box, Button, Container, Divider, Icon, IconButton, TextField, Toolbar, Typography } from '@mui/material'
 import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from '../../@types/menu';
 import { DarkModeButton } from '../buttons/DarkModeButton';
-import { LogoutButton } from '../buttons/LogoutButton';
 import UserButton from '../buttons/UserButton';
 import { MenuDrawer } from './MenuDrawer';
 

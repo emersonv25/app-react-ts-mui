@@ -1,6 +1,6 @@
 import { Icon, IconButton } from "@mui/material";
 import { useEffect } from "react";
-import { useAppThemeContext } from "../../contexts";
+import { useAppThemeContext } from "../../contexts/ThemeContext";
 
 
 export function DarkModeButton() {
