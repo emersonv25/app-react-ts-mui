@@ -1,4 +1,4 @@
-import { useAuthContext } from "../shared/contexts/AuthContext"
+import { useAuthContext } from "../contexts/AuthContext"
 
 export function UserPanel() {
     const { user } = useAuthContext();

@@ -1,8 +1,8 @@
 
 import { Box, Container } from "@mui/material";
-import { CardInfo } from '../shared/@types/cardInfo';
-import CarouselCards from "../shared/components/cards/CarouselCards";
-import PageCards from "../shared/components/cards/PageCards";
+import { CardInfo } from '../@types/cardInfo';
+import CarouselCards from "../components/cards/CarouselCards";
+import PageCards from "../components/cards/PageCards";
 
 export function Home() {
 

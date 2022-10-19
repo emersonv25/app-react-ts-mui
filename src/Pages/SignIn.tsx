@@ -1,7 +1,7 @@
 import { Avatar, Button, Checkbox, Container, FormControlLabel, Grid, Icon, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link, Navigate } from "react-router-dom";
-import { useAuthContext } from "../shared/contexts/AuthContext";
+import { useAuthContext } from "../contexts/AuthContext";
 
 
 export function SignIn() {
