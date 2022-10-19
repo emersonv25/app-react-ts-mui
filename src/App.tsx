@@ -1,7 +1,7 @@
 import { CssBaseline } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
 import { AppRoutes } from './routes'
-import InfoAlert from './shared/components/alerts/InfoAlert'
+import AlertPopup from './shared/components/alerts/AlertPopup'
 import { NavBar } from './shared/components/navbar/NavBar'
 import { AlertProvider } from './shared/contexts/AlertContext'
 import { AuthProvider } from './shared/contexts/AuthContext'
@@ -14,7 +14,7 @@ function App() {
         <AppThemeProvider>
           <BrowserRouter>
             <NavBar>
-              <InfoAlert />
+              <AlertPopup />
               <AppRoutes />
             </NavBar>
           </BrowserRouter>

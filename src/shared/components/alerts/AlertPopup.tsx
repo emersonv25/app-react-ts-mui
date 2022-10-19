@@ -1,15 +1,10 @@
 import { Box, IconButton } from '@mui/material';
 import Alert from '@mui/material/Alert';
-import { useAlertContext } from '../../contexts/AlertContext';
 import CloseIcon from '@mui/icons-material/Close';
-import { useEffect } from 'react';
+import useAlert from '../../hooks/useAlert';
 
-export default function InfoAlert() {
-  const { alert, setAlert, closeAlert } = useAlertContext();
-  
-  useEffect(() => {
-    setAlert({message: 'teste', type: 'success'})
-  },[])
+export default function AlertPopup() {
+  const { alert, closeAlert } = useAlert();
 
   if(alert){
     return (
@@ -29,7 +24,7 @@ export default function InfoAlert() {
           </IconButton>
         }
         
-        >{alert?.message}</Alert>
+        >{alert?.text}</Alert>
       </Box >
     );
   }

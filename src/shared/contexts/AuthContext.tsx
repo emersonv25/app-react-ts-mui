@@ -1,8 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { User, UserLogin } from "../@types/user";
+import useAlert from "../hooks/useAlert";
 import api from "../services/api";
-import { useAlertContext } from "./AlertContext";
-
 interface IAuthProviderProps {
     children: React.ReactNode
 }
@@ -10,6 +9,7 @@ interface IAuthProviderProps {
 interface AuthContextData {
     signed: boolean;
     user: User | null;
+    token: string;
     login(user: object) : Promise<void>;
     logout(): void;
 }
@@ -23,7 +23,7 @@ export const useAuthContext = () => {
 export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState('');
-    const { setAlert } = useAlertContext();
+    const { setAlert } = useAlert();
 
     useEffect(() => {
         async function loadingStoreData(){
@@ -53,7 +53,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         }).catch(err => {
             console.log(err)
             //alert(err.response.data ? err.response.data : err.message)
-            setAlert({message: err.message, type: 'error'})
+            setAlert({text: err.message, type: 'error'})
         });
         
     }
@@ -68,6 +68,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         <AuthContext.Provider value={{
             signed: Boolean(user),
             user,
+            token,
             login,
             logout,            
         }}>

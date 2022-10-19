@@ -1,4 +1,4 @@
 export type AlertType ={
-    message: string,
+    text: string,
     type: 'error' | 'warning' | 'info' | 'success'
 }

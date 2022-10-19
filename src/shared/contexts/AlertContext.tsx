@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { AlertType } from "../@types/alert";
 
 interface IAlertProviderProps {
@@ -13,10 +13,6 @@ interface IAlertContextData {
 
 
 export const AlertContext = createContext<IAlertContextData>({} as IAlertContextData);
-
-export const useAlertContext = () => {
-    return useContext(AlertContext);
-}
 
 export const AlertProvider: React.FC<IAlertProviderProps> = ({ children }) => {
     const [alert, setAlert] = useState<AlertType | null>(null)
