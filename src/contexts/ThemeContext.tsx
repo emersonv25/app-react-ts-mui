@@ -8,7 +8,7 @@ interface IThemeContextData {
     themeName: 'light' | 'dark'
     toggleTheme: () => void;
 }
-const ThemeContext = createContext({} as IThemeContextData);
+export const ThemeContext = createContext({} as IThemeContextData);
 
 interface IAppThemeProviderProps {
     children: React.ReactNode

@@ -1,23 +1,23 @@
 import { Avatar, Button, Checkbox, Container, FormControlLabel, Grid, Icon, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 
 export function SignIn() {
+    
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
-    const { signed, login } = useAuthContext()
+    const { signed, authLogin } = useAuth()
 
     const handleLogin = async (event: any) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
+        //const data = new FormData(event.currentTarget);
+        await authLogin(username, password);
 
-        const user = {
-            username: data.get('username'),
-            password: data.get('password')
-        }
-        console.log(user);
-        await login(user);
     };
 
     if (signed) {
@@ -47,6 +47,8 @@ export function SignIn() {
                                 id="username"
                                 label="Usuário"
                                 autoFocus
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                             <TextField
                                 margin="normal"
@@ -56,6 +58,8 @@ export function SignIn() {
                                 label="Senha"
                                 type="password"
                                 id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <FormControlLabel
                                 control={<Checkbox value="remember" />}

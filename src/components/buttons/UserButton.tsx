@@ -1,17 +1,17 @@
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useAuthContext } from '../../contexts/AuthContext';
 import { IconButton } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function UserButton() {
-    const { signed, logout } = useAuthContext();
+    const { signed, authLogout } = useAuth();
 
     const logoutClick = () => {
         setAnchorEl(null);
-        logout()
+        authLogout()
     }
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

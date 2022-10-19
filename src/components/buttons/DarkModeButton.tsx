@@ -1,10 +1,9 @@
 import { Icon, IconButton } from "@mui/material";
-import { useEffect } from "react";
-import { useAppThemeContext } from "../../contexts/ThemeContext";
+import useTheme from "../../hooks/useTheme";
 
 
 export function DarkModeButton() {
-    const { toggleTheme, themeName } = useAppThemeContext();
+    const { toggleTheme, themeName } = useTheme();
     return (
         <div>
             <IconButton onClick={toggleTheme} color='inherit'>
