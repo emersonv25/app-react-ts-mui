@@ -2,7 +2,6 @@ import { Avatar, Button, Checkbox, Container, FormControlLabel, Grid, Icon, Text
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { useAuthContext } from "../contexts/AuthContext";
 import { useAuth } from "../hooks/useAuth";
 
 

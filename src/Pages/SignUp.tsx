@@ -1,16 +1,22 @@
 import { Avatar, Button, Checkbox, Container, FormControlLabel, Grid, Icon, Paper, TextField, Typography } from "@mui/material";
 import { Link } from 'react-router-dom'
 import { Box } from "@mui/system";
+import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export function SignUp() {
-    const handleSubmit = (event: any) => {
+
+    const [username, setUsername] = useState('')
+    const [fullName, setFullName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const {authRegister} = useAuth();
+
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            username: data.get('username'),
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        //const data = new FormData(event.currentTarget);
+        await authRegister(username, fullName, email, password);
     };
     return (
         <>
@@ -36,7 +42,18 @@ export function SignUp() {
                             name="username"
                             id="username"
                             label="Usuário"
-                            autoFocus
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="fullname"
+                            id="fullname"
+                            label="Nome Completo"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -46,7 +63,8 @@ export function SignUp() {
                             id="email"
                             label="E-mail"
                             type="email"
-                            autoFocus
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -56,6 +74,8 @@ export function SignUp() {
                             label="Senha"
                             type="password"
                             id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" />}
