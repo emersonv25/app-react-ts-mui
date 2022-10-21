@@ -1,9 +1,10 @@
 
-import { AppBar, Box, Button, Container, Divider, Icon, IconButton, TextField, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Container, Divider, Icon, IconButton, Paper, TextField, Toolbar, Typography, useTheme } from '@mui/material'
 import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from '../../@types/menu';
+import useAppTheme from '../../hooks/useAppTheme';
 import { DarkModeButton } from '../buttons/DarkModeButton';
 import UserButton from '../buttons/UserButton';
 import { MenuDrawer } from './MenuDrawer';
@@ -21,6 +22,8 @@ const menus: Menu[] = [
 // latest, most views, most likes
 export const NavBar: React.FC<NavbarProps> = ({ children }) => {
     const [searchDisplay, setSearchDisplay] = useState(false);
+    const appTheme = useAppTheme();
+    const themeName = appTheme.themeName;
     return (
         <>
             <Box width="100%">
@@ -45,9 +48,9 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
                                         size='small'
                                         label='Pesquisar...'
                                         variant='standard'
-                                        InputLabelProps={{ style: { padding: '0 15px' } }}
+                                        InputLabelProps={{ style: { padding: '0 15px', color: 'white' } }}
                                         InputProps={{ disableUnderline: true }}
-                                        style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 25, width: '100%', padding: '0  10px' }}>
+                                        style={{ backgroundColor: 'rgba(255,255,255,0.2)' ,borderRadius: 25, width: '100%', padding: '0  10px' }}>
 
                                     </TextField>
                                     <IconButton color='inherit'>
@@ -80,14 +83,14 @@ export const NavBar: React.FC<NavbarProps> = ({ children }) => {
             {/* Input de pesquisar em telas pequenas */}
             <Box display={{ xs: 'flex', md: 'none' }} p={1}>
                 <Container>
-                    <Box display={{ xs: searchDisplay ? 'flex' : 'none', md: 'none' }} justifyContent='center'>
+                    <Box display={{ xs: searchDisplay ? 'flex' : 'none', md: 'none' }} justifyContent='center' pb={1} pt={1}>
                         <TextField
                             size='small'
                             label='Pesquisar...'
                             variant='standard'
                             InputLabelProps={{ style: { padding: '0 15px' } }}
                             InputProps={{ disableUnderline: true }}
-                            style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 25, width: '100%', padding: '0  10px' }}>
+                            style={{ backgroundColor: themeName == 'dark' ? 'rgba(255,255,255,0.2)' : 'pink', borderRadius: 25, width: '100%', padding: '0  10px' }}>
 
                         </TextField>
                         <IconButton color='inherit'>

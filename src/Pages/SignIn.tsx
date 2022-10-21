@@ -1,4 +1,4 @@
-import { Avatar, Button, Checkbox, Container, FormControlLabel, Grid, Icon, TextField, Typography } from "@mui/material";
+import { Avatar, Button, Checkbox, Container, FormControlLabel, Grid, Icon, Paper, Skeleton, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
@@ -25,7 +25,7 @@ export function SignIn() {
     else {
         return (
             <>
-                <Container maxWidth="xs">
+                <Container maxWidth="xs" component={Paper}>
                     <Box
                         sx={{
                             marginTop: 8,
@@ -72,6 +72,7 @@ export function SignIn() {
                             >
                                 Login
                             </Button>
+
                             <Grid container>
                                 <Grid item md={6}>
                                     <Button component={Link} to="/forgot" variant="text" color='inherit'>

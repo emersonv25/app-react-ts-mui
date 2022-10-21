@@ -6,9 +6,9 @@ export const LightTheme = createTheme({
     palette: {
         mode: 'light',
         primary:{
-          main: pink['A400'],
-          dark: pink[800],
-          light: pink[400],
+          main: pink['A200'],
+          dark: pink[500],
+          light: pink['A100'],
           contrastText: 'white',
         },
         secondary: {

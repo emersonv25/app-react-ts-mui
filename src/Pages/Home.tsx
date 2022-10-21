@@ -26,7 +26,7 @@ export function Home() {
 
 const cards: CardInfo[] =
     [
-        { title: 'Attack on Titan', image: '/static/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
+        { title: 'Attack on Titan: Shingeki No Kyojin', image: '/static/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
         { title: 'Reptile MUITO FODA BIXO TNC', image: '/static/images/contemplative-reptile.jpg' },
         { title: 'Live from space', image: '/static/images/live-from-space.jpg' },
         { title: 'Attack on Titan', image: '/static/images/pWFlyeunOIo51wYQOCx8kJDLm2y-185x278.jpg' },
