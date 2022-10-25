@@ -19,3 +19,8 @@ export async function registerUser(username: string, fullName: string, email: st
   })
   return response.data
 }
+export async function getProfile(token: string)
+{
+  const response = await axios.get(import.meta.env.VITE_API + '/auth/profile', {headers: {'Authorization': `Bearer ${token}`}})
+  return response.data
+}

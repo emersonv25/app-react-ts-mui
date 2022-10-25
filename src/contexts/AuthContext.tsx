@@ -23,26 +23,10 @@ export const useAuthContext = () => {
 export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState('');
-
-    useEffect(() => {
-
-        const storagedUser = localStorage.getItem("@Auth:user");
-        const storagedToken = localStorage.getItem("@Auth:token")
-
-        if(storagedUser && storagedToken)
-        {
-            setUser(JSON.parse(storagedUser));
-            setToken(storagedToken)
-            api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-        }
-        else{
-            logout()
-        }
-    }, []);
-        
+      
     function logout(){
-        localStorage.removeItem("@Auth:user");
-        localStorage.removeItem("@Auth:token")
+        localStorage.removeItem("@Auth:access_token");
+        localStorage.removeItem("@Auth:user")
         delete api.defaults.headers.Authorization;
         setUser(null)
         setToken('')
