@@ -10,6 +10,7 @@ export const useAuth =() => {
     useEffect(() => {
         authVerifyToken();
       },[]);
+
     async function authLogin (username: string, password: string) {
         await loginUser(username, password).then(async response => {
             setToken(response.access_token)
@@ -21,14 +22,15 @@ export const useAuth =() => {
             setAlert({text: err.message, type: 'error'})
         });
     }
+
     async function authRegister (username: string, fullName: string, email: string, password: string){
         await registerUser(username, fullName, email, password).then(response => {
             setAlert({text: 'Usuario cadastrado com sucesso', type: 'success'})
         }).catch(err => {
             setAlert({text: 'Falha ao cadastrar usuário: ' + err.message, type: 'error'})
         })
-        
     }
+
     async function authGetProfile (token: string)
     {
         await getProfile(token).then(response => {
@@ -36,7 +38,7 @@ export const useAuth =() => {
             setUser(response)
 
         }).catch(err => {
-            console.log(err)
+            logout()
             setAlert({text: err.message, type: 'error'})
         })
     }
@@ -44,12 +46,12 @@ export const useAuth =() => {
         logout()
         setAlert({text: 'Usuário deslogado com sucess', type: 'success'})
     }
-    function authVerifyToken()
+    async function authVerifyToken()
     {
         const storagedToken = localStorage.getItem("@Auth:access_token")
         if(storagedToken)
         {
-            authGetProfile(storagedToken).then(() => {
+            await getProfile(storagedToken).then(() => {
                 setToken(storagedToken)
                 api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
             }).catch(() => {
