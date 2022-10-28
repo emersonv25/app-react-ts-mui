@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react"
+import { useContext, useEffect } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 import api, { getProfile, loginUser, registerUser } from "../services/api";
 import useAlert from "./useAlert";
@@ -7,24 +7,9 @@ export const useAuth =() => {
     const {user, token, signed, setUser, setToken, logout} = useContext(AuthContext)
     const {setAlert} = useAlert();
 
-    useMemo(() => {
-        const storagedToken = localStorage.getItem("@Auth:access_token")
-        if(storagedToken)
-        {
-            authGetProfile(storagedToken).then(() => {
-                setToken(storagedToken)
-                api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-            }).catch(() => {
-                logout()
-                setAlert({text: "Sessão expirada", type: 'warning'})
-            })
-        }
-        else{
-            logout()
-        }
-    },[]);
-
-
+    useEffect(() => {
+        authVerifyToken();
+      },[]);
     async function authLogin (username: string, password: string) {
         await loginUser(username, password).then(async response => {
             setToken(response.access_token)
@@ -59,6 +44,23 @@ export const useAuth =() => {
         logout()
         setAlert({text: 'Usuário deslogado com sucess', type: 'success'})
     }
+    function authVerifyToken()
+    {
+        const storagedToken = localStorage.getItem("@Auth:access_token")
+        if(storagedToken)
+        {
+            authGetProfile(storagedToken).then(() => {
+                setToken(storagedToken)
+                api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+            }).catch(() => {
+                logout()
+                setAlert({text: "Sessão expirada", type: 'warning'})
+            })
+        }
+        else{
+            logout()
+        }
+    }
 
-    return { user, token, signed ,authLogin, authRegister, authLogout}
+    return { user, token, signed ,authLogin, authRegister, authLogout, authGetProfile, authVerifyToken}
 }

@@ -7,7 +7,7 @@ import { CardInfo } from '../../@types/cardInfo';
 
 export default function CardPoster(props : CardInfo) {
     return (
-        <Card sx={{ display:'flex', margin: 1, maxWidth: 220}} elevation={0}>
+        <Card sx={{ display:'flex', margin: 1, maxWidth: 220, borderRadius: 3}} elevation={0}>
             <CardActionArea>
                 <CardMedia 
                     component="img"
@@ -16,7 +16,7 @@ export default function CardPoster(props : CardInfo) {
                     image={`${props.image}`}
                 />
                 <CardContent sx={{ maxHeight: 40, padding: 1 }}>
-                    <Typography gutterBottom variant="subtitle2" whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' align="left">
+                    <Typography gutterBottom variant="subtitle1" whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' align="left">
                         {props.title}
                     </Typography>
                 </CardContent>

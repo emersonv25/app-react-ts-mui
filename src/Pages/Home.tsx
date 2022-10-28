@@ -5,7 +5,6 @@ import CarouselCards from "../components/cards/CarouselCards";
 import PageCards from "../components/cards/PageCards";
 
 export function Home() {
-
     return (
         <>
             <Box>

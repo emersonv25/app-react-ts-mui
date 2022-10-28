@@ -8,7 +8,6 @@ import { UserPanel } from "../pages/UserPanel"
 import { PrivateRoute } from "./privateRoutes"
 
 export const AppRoutes = () => {
-
     return (
         <Routes>
             <Route path='*' element={<Navigate to="/" />} />
