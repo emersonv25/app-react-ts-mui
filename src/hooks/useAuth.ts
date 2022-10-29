@@ -2,14 +2,11 @@ import { useContext, useEffect } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 import api, { getProfile, loginUser, registerUser } from "../services/api";
 import useAlert from "./useAlert";
+import { useDebounce } from "./useDebounce";
 
 export const useAuth =() => {
     const {user, token, signed, setUser, setToken, logout} = useContext(AuthContext)
     const {setAlert} = useAlert();
-
-    useEffect(() => {
-        authVerifyToken();
-      },[]);
 
     async function authLogin (username: string, password: string) {
         await loginUser(username, password).then(async response => {
@@ -51,9 +48,12 @@ export const useAuth =() => {
         const storagedToken = localStorage.getItem("@Auth:access_token")
         if(storagedToken)
         {
-            await getProfile(storagedToken).then(() => {
+            await getProfile(storagedToken).then(response => {
+                localStorage.setItem("@Auth:user", JSON.stringify(response))
+                setUser(response)
                 setToken(storagedToken)
                 api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+                
             }).catch(() => {
                 logout()
                 setAlert({text: "Sessão expirada", type: 'warning'})

@@ -6,13 +6,7 @@ import { NavBar } from './components/navbar/NavBar'
 import { AlertProvider } from './contexts/AlertContext'
 import { AuthProvider } from './contexts/AuthContext'
 import { AppThemeProvider } from './contexts/ThemeContext'
-import { useCallback } from 'react'
 function App() {
-
-  useCallback(() => {
-      console.log("effect")
-    },[]);
-    
   return (
     <AlertProvider>
       <AuthProvider>

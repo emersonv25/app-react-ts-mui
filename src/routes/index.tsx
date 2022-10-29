@@ -1,4 +1,7 @@
+import { useEffect } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
+import { useAuth } from "../hooks/useAuth"
+import { useDebounce } from "../hooks/useDebounce"
 import { About } from "../pages/About"
 import { Forgot } from "../pages/Forgot"
 import { Home } from "../pages/Home"
@@ -8,6 +11,14 @@ import { UserPanel } from "../pages/UserPanel"
 import { PrivateRoute } from "./privateRoutes"
 
 export const AppRoutes = () => {
+    const {debounce} = useDebounce();
+    const {authVerifyToken} = useAuth();
+
+    useEffect(() => {
+        debounce(() => {
+            authVerifyToken()
+        })
+    },[]);
     return (
         <Routes>
             <Route path='*' element={<Navigate to="/" />} />
