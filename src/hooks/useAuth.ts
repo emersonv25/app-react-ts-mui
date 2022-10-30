@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react"
+import axios from "axios";
+import { useContext } from "react"
 import { AuthContext } from "../contexts/AuthContext"
-import api, { getProfile, loginUser, registerUser } from "../services/api";
+import { getProfile, loginUser, registerUser, updateProfile } from "../services/api";
 import useAlert from "./useAlert";
-import { useDebounce } from "./useDebounce";
 
 export const useAuth =() => {
     const {user, token, signed, setUser, setToken, logout} = useContext(AuthContext)
@@ -11,8 +11,8 @@ export const useAuth =() => {
     async function authLogin (username: string, password: string) {
         await loginUser(username, password).then(async response => {
             setToken(response.access_token)
-            api.defaults.headers.Authorization = `Bearer ${response.access_token}`
-            localStorage.setItem("@Auth:access_token", response.access_token)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response.access_token}`
+            localStorage.setItem("access_token", response.access_token)
             await authGetProfile(response.access_token)
         }).catch(err => {
             console.log(err)
@@ -27,11 +27,19 @@ export const useAuth =() => {
             setAlert({text: 'Falha ao cadastrar usuário: ' + err.message, type: 'error'})
         })
     }
-
+    async function authUpdateProfile (username: string, fullName: string, email: string, password: string){
+        await updateProfile(username, fullName, email, password).then(response => {
+            setAlert({text: 'Usuario editado com sucesso', type: 'success'})
+            localStorage.setItem("user", JSON.stringify(response))
+            setUser(response)
+        }).catch(err => {
+            setAlert({text: 'Falha ao editar usuário: ' + err.message, type: 'error'})
+        })
+    }
     async function authGetProfile (token: string)
     {
         await getProfile(token).then(response => {
-            localStorage.setItem("@Auth:user", JSON.stringify(response))
+            localStorage.setItem("user", JSON.stringify(response))
             setUser(response)
 
         }).catch(err => {
@@ -45,14 +53,15 @@ export const useAuth =() => {
     }
     async function authVerifyToken()
     {
-        const storagedToken = localStorage.getItem("@Auth:access_token")
+        const storagedToken = localStorage.getItem("access_token")
         if(storagedToken)
         {
             await getProfile(storagedToken).then(response => {
-                localStorage.setItem("@Auth:user", JSON.stringify(response))
+                localStorage.setItem("user", JSON.stringify(response))
                 setUser(response)
                 setToken(storagedToken)
-                api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+                axios.defaults.headers.common['Authorization'] = `Bearer ${storagedToken}`;
+                console.log(axios.defaults.headers.common['Authorization'])
                 
             }).catch(() => {
                 logout()
@@ -64,5 +73,5 @@ export const useAuth =() => {
         }
     }
 
-    return { user, token, signed ,authLogin, authRegister, authLogout, authGetProfile, authVerifyToken}
+    return { user, token, signed ,authLogin, authRegister, authLogout, authGetProfile, authVerifyToken, authUpdateProfile}
 }

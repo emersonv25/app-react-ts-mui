@@ -1,9 +1,9 @@
 export type User ={
-    username: String,
-    fullName: String, 
-    email: String
+    username: string,
+    fullName: string, 
+    email: string
 }
 export type UserLogin = {
-    usernamee: String,
-    password: String,
+    usernamee: string,
+    password: string,
 }

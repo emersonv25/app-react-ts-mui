@@ -1,10 +1,31 @@
 import { Avatar, Box, Button, Checkbox, Container, FormControlLabel, Icon, Paper, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 export function UserPanel() {
-    const { user, authLogout } = useAuth();
+    const { user, authLogout, authUpdateProfile } = useAuth();
     const [edit, setEdit] = useState(false);
+
+    const [username, setUsername] = useState(user?.username ? user.username : '')
+    const [fullName, setFullName] = useState(user?.fullName ? user.fullName : '')
+    const [email, setEmail] = useState(user?.email ? user.email : '')
+    const [password, setPassword] = useState('')
+
+    function reset ()
+    {
+        setUsername(user?.username ? user.username : '')
+        setFullName(user?.fullName ? user.fullName : '')
+        setEmail(user?.email ? user.email : '')
+        setPassword('')
+        setEdit(false)
+    }
+
+    async function handleSubmit (event: any) {
+        event.preventDefault();
+        await authUpdateProfile(username, fullName, email, password).then(() =>{
+            setEdit(false)
+        });
+    };
 
     return (
         <Container maxWidth="xs" component={Paper}>
@@ -19,7 +40,7 @@ export function UserPanel() {
                 <Typography component="h1" variant="h5">
                     Painel do Usuário
                 </Typography>
-                <Box component='form' noValidate sx={{ mt: 1 }}>
+                <Box component='form' noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
                     <TextField
                         margin="normal"
                         required
@@ -27,8 +48,9 @@ export function UserPanel() {
                         name="username"
                         id="username"
                         label="Usuário"
-                        value={user?.username}
+                        value={username}
                         disabled={!edit}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <TextField
                         margin="normal"
@@ -37,8 +59,9 @@ export function UserPanel() {
                         name="fullname"
                         id="fullname"
                         label="Nome Completo"
-                        value={user?.fullName}
+                        value={fullName}
                         disabled={!edit}
+                        onChange={(e) => setFullName(e.target.value)}
                     />
 
                     <TextField
@@ -49,8 +72,9 @@ export function UserPanel() {
                         id="email"
                         label="E-mail"
                         type="email"
-                        value={user?.email}
+                        value={email}
                         disabled={!edit}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <TextField
                         margin="normal"
@@ -59,11 +83,9 @@ export function UserPanel() {
                         id="password"
                         label="Nova Senha"
                         type="password"
+                        value={password}
                         disabled={!edit}
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" />}
-                        label="Lembrar senha"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     {
                         !edit &&
@@ -81,7 +103,7 @@ export function UserPanel() {
                         edit &&
                         <>
                             <Button
-                                type="button"
+                                type="submit"
                                 fullWidth
                                 color="success"
                                 variant="contained"
@@ -95,7 +117,7 @@ export function UserPanel() {
                                 color="error"
                                 variant="outlined"
                                 sx={{ mb: 2 }}
-                                onClick={() => setEdit(false)}
+                                onClick={() => reset()}
                             >
                                 Cancelar
                             </Button>

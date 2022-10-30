@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { User, UserLogin } from "../@types/user";
-import api from "../services/api";
+import axios from "axios";
+import { createContext, useContext, useState } from "react";
+import { User } from "../@types/user";
 interface IAuthProviderProps {
     children: React.ReactNode
 }
@@ -13,7 +13,7 @@ interface AuthContextType {
     setToken(token: string): void;
     logout(): void;
 }
-
+ 
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export const useAuthContext = () => {
@@ -25,9 +25,9 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [token, setToken] = useState('');
       
     function logout(){
-        localStorage.removeItem("@Auth:access_token");
-        localStorage.removeItem("@Auth:user")
-        delete api.defaults.headers.Authorization;
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("user")
+        delete axios.defaults.headers.Authorization;
         setUser(null)
         setToken('')
     }
